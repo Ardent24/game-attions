@@ -1,0 +1,37 @@
+
+.header {
+    margin-bottom: 2rem;
+}
+
+.header__wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header__level {
+
+}
+
+.header__title {
+
+}
+
+.header-box {
+    display: flex;
+    align-items: center;
+}
+
+.header-box__item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+}
+
+.header-box__icon {
+    padding: 0 0.5rem;
+}
+
+.header-time__txt {
+
+}

@@ -1,0 +1,8 @@
+@import "~normalize.css";
+@import "header.css";
+@import "main.css";
+
+.game-layout{
+    max-width: 800px;
+    margin: 0 auto;
+}
