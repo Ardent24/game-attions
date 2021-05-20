@@ -1,11 +1,18 @@
 import React from "react";
 import CubeItem from "./item/CubeItem";
 import { useDispatch, useSelector } from "react-redux";
-import {droppingNewLvl, gameOver, isOpenModal, nextLevel} from "../../store/actions/gameActions";
+import {
+  droppingNewLvl,
+  editRandomAttr,
+  endFrame,
+  gameOver,
+  isOpenModal,
+  nextLevel,
+} from "../../store/actions/gameActions";
 
 const Main = () => {
   const dispatch = useDispatch();
-  const { cubes, randomCubes, cubesClicked, lvl } = useSelector(
+  const { cubes, randomCubes, cubesClicked, lvl, openModal } = useSelector(
     (state) => state.gameReducer
   );
   const width = useSelector((state) => state.gameReducer.gameLevel[lvl].width);
@@ -18,18 +25,40 @@ const Main = () => {
       dispatch(isOpenModal(true));
       dispatch(droppingNewLvl());
 
-      if ( strRandomCubes === strCubesClicked){
+      if (strRandomCubes === strCubesClicked) {
         dispatch(nextLevel());
-      } else{
+      } else {
         dispatch(gameOver());
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cubesClicked]);
 
+  //PUSH ANIMATE
+  React.useEffect(() => {
+    if (!openModal) animateActiveCubes(cubes, randomCubes);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [randomCubes]);
+
+  const animateActiveCubes = (cubes, randomCubes) => {
+    let count = 0;
+
+    setTimeout(function time() {
+      count++;
+
+      dispatch(editRandomAttr(randomCubes[count - 1]));
+
+      if (count < randomCubes.length) {
+        setTimeout(time, 1500);
+      } else {
+        dispatch(endFrame());
+      }
+    }, 750);
+  };
+
   return (
-    <main className={"main"}>
-      <div className="main__wrap" style={{maxWidth: width}}>
+    <main className="main">
+      <div className="main__wrap" style={{ maxWidth: width }}>
         {cubes.map((elem) => (
           <CubeItem
             key={elem.id}

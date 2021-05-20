@@ -9,12 +9,14 @@ import {
   NEXT_LEVEL,
   IS_OPEN_MODAL,
   DROPPING_NEW_LVL,
+  FIRST_GAME
 } from "../actions/types";
 
 import { generateCubes } from "../../modules/generateCubes";
 import { generateRandom } from "../../modules/generateRandom";
 
 const initialState = {
+  firstGame: false,
   openModal: true,
   isGameOver: false,
   cubes: [],
@@ -28,7 +30,8 @@ const initialState = {
       numberCubes: 4,
       numberRandomCubes: 2,
       width: "500px",
-      modalTitle: "Привет касатик! Сейчас мы с тобой поиграем!",
+      modalTitle: "Привет касатик! Сейчас мы с тобой поиграем! Тебе надо запомнить порядок мигающих кубиков, и на" +
+        " них нажать мышкой, в этом же порядке",
     },
     {
       level: 2,
@@ -147,7 +150,11 @@ export const gameReducer = (state = initialState, action) => {
         randomCubes: [],
         cubesClicked: [],
       };
-    default:
+    case FIRST_GAME:
+      return {
+        ...state, firstGame: action.payload
+      }
+      default:
       return state;
   }
 };

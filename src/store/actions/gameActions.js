@@ -8,7 +8,8 @@ import {
   NEXT_LEVEL,
   GAME_OVER,
   IS_OPEN_MODAL,
-  DROPPING_NEW_LVL
+  DROPPING_NEW_LVL,
+  FIRST_GAME
 } from "./types";
 
 export const createStateCubes = (num) => ({
@@ -56,3 +57,8 @@ export const isOpenModal = (bool) => ({
 export const droppingNewLvl = () => ({
   type: DROPPING_NEW_LVL,
 });
+
+export const isFirstGame = (bool) => ({
+  type: FIRST_GAME,
+  payload: bool
+})

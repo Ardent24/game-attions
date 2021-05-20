@@ -4,13 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   createRandomId,
   createStateCubes,
-  editRandomAttr,
-  endFrame,
+  isFirstGame,
   isOpenModal,
   startFrame,
 } from "../../store/actions/gameActions";
+import BasicContent from "./content/BasicContent";
+import GameOverContent from "./content/GameOverContent";
+import FirstContent from "./content/FirstContent";
 
-const customStyles = {
+const stylesModal = {
   content: {
     top: "50%",
     left: "50%",
@@ -26,7 +28,7 @@ const customStyles = {
 };
 
 const Modal = () => {
-  const { cubes, randomCubes, lvl, openModal, isGameOver } = useSelector(
+  const { lvl, openModal, isGameOver, firstGame } = useSelector(
     (state) => state.gameReducer
   );
   const { level, modalTitle, numberCubes, numberRandomCubes } = useSelector(
@@ -44,57 +46,40 @@ const Modal = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [openModal]);
 
-  //PUSH ANIMATE ACTIVE CUBES
-  React.useEffect(() => {
-    if (!openModal) {
-      animateActiveCubes(cubes, randomCubes);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [randomCubes]);
-
-  const animateActiveCubes = (cubes, randomCubes) => {
-    let count = 0;
-    const to = randomCubes.length;
-
-    setTimeout(function time() {
-      count++;
-
-      const id = randomCubes[count - 1];
-      dispatch(editRandomAttr(id));
-
-      if (count < to) {
-        setTimeout(time, 1500);
-      } else {
-        dispatch(endFrame());
-      }
-    }, 750);
-  };
-
   const isCloseModal = () => {
     dispatch(isOpenModal(false));
+    if (firstGame) {
+      dispatch(isFirstGame(false));
+      dispatch(isOpenModal(true));
+    }
+  };
+
+  const templateContentModal = () => {
+    if (firstGame) {
+      return <FirstContent isCloseModal={isCloseModal} />;
+    }
+    if (isGameOver && !firstGame) {
+      return <GameOverContent />;
+    }
+    if (!isGameOver && !firstGame) {
+      return (
+        <BasicContent
+          level={level}
+          modalTitle={modalTitle}
+          isCloseModal={isCloseModal}
+        />
+      );
+    }
   };
 
   return (
     <ReactModal
       isOpen={openModal}
-      style={customStyles}
+      style={stylesModal}
       overlayClassName="modal-background"
       ariaHideApp={false}
     >
-      {!isGameOver && (
-        <>
-          <h3 className={"modal-title"}> {modalTitle}</h3>
-          <h5 className={"modal-txt"}>Уровень: {level}</h5>
-          <button onClick={isCloseModal} className={"modal-btn"}>
-            OK
-          </button>
-        </>
-      )}
-      {isGameOver && (
-        <>
-          <h2 className={"modal-title"} style={{textAlign: "center"}}>Ты занубил Братан!</h2>
-        </>
-      )}
+      {templateContentModal()}
     </ReactModal>
   );
 };

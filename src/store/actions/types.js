@@ -8,3 +8,4 @@ export const NEXT_LEVEL = "NEXT_LEVEL";
 export const GAME_OVER = "GAME_OVER";
 export const IS_OPEN_MODAL = "IS_OPEN_MODAL";
 export const DROPPING_NEW_LVL = "DROPPING_NEW_LVL";
+export const FIRST_GAME = "FIRST_GAME";

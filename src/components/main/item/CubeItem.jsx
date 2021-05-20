@@ -19,9 +19,9 @@ const CubeItem = ({ randomActive, cubeInfo: { id } }) => {
   }, [randomActive]);
 
   function isClkCube(ev) {
-    if (randomActive){
+    if (randomActive) {
       ev.target.classList.add("click");
-    } else{
+    } else {
       ev.target.classList.add("miss");
     }
 
