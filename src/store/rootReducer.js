@@ -1,7 +1,6 @@
 import { combineReducers } from "redux";
-
-import {cubesReducer} from "./reducers/cubesReducer";
+import { gameReducer } from "./reducers/gameReducer";
 
 export const rootReducer = combineReducers({
-    cubes: cubesReducer
+  gameReducer,
 });

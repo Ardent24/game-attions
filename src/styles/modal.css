@@ -1,0 +1,29 @@
+.modal-background {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.modal-title {
+}
+
+.modal-btn {
+  background-color: aqua;
+  border: 2px solid transparent;
+  outline: none;
+  padding: 0.5rem 1rem;
+  color: white;
+  border-radius: 2px;
+  transition: 0.2s;
+}
+
+.modal-btn:hover {
+  border: 2px solid black;
+  cursor: pointer;
+  color: black;
+}
+
+.modal-btn:active,
+.modal-btn:focus {
+  border: 2px solid black;
+}

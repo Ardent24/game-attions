@@ -6,13 +6,28 @@
     margin: 0 auto;
 }
 
-
 .main__item {
-    flex: 0 0 calc(25% - 1rem);
+    flex: 0 0 180px;
     height: 6rem;
     background-color: aqua;
     border: none;
     margin: 0.5rem;
     border-radius: 4px;
     cursor: pointer;
+}
+
+.main__item:disabled {
+    cursor: not-allowed;
+    pointer-events: all !important;
+}
+
+.main__item.active {
+    background-color: cadetblue;
+}
+
+.main__item.click {
+    background-color: green;
+}
+.main__item.miss {
+    background-color: red;
 }

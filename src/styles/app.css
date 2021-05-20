@@ -1,6 +1,7 @@
 @import "~normalize.css";
 @import "header.css";
 @import "main.css";
+@import "modal.css";
 
 .game-layout{
     max-width: 800px;
