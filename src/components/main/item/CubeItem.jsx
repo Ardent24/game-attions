@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addCubeClick } from "../../../store/actions/gameActions";
+import { addCubeClick } from "../../../store/toolkitRedux/gameReducer";
 
 const CubeItem = ({ randomActive, cubeInfo: { id } }) => {
   const dispatch = useDispatch();

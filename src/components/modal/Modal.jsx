@@ -7,7 +7,7 @@ import {
   isFirstGame,
   isOpenModal,
   startFrame,
-} from "../../store/actions/gameActions";
+} from "../../store/toolkitRedux/gameReducer";
 import BasicContent from "./content/BasicContent";
 import GameOverContent from "./content/GameOverContent";
 import FirstContent from "./content/FirstContent";
@@ -41,7 +41,7 @@ const Modal = () => {
     if (!openModal) {
       dispatch(startFrame());
       dispatch(createStateCubes(numberCubes));
-      dispatch(createRandomId(numberRandomCubes, numberCubes));
+      dispatch(createRandomId({ numberRandomCubes, numberCubes }));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [openModal]);

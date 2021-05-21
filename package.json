@@ -2,8 +2,12 @@
   "name": "attions-game",
   "version": "0.1.0",
   "private": true,
+  "": {
+    "redux": "^4.1.0"
+  },
   "homepage": "https://ardent24.github.io/game-attions/",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.5.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -16,9 +20,8 @@
     "react-modal": "^3.13.1",
     "react-redux": "^7.2.4",
     "react-scripts": "4.0.3",
-    "redux": "^4.1.0",
-    "redux-logger": "^3.0.6",
     "store": "^2.0.12",
+    "redux-logger": "^3.0.6",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

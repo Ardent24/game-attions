@@ -8,7 +8,7 @@ import {
   gameOver,
   isOpenModal,
   nextLevel,
-} from "../../store/actions/gameActions";
+} from "../../store/toolkitRedux/gameReducer";
 
 const Main = () => {
   const dispatch = useDispatch();
